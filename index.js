@@ -1,5 +1,8 @@
 //importing express packages
 const express = require("express");
+//import uuid package
+const uuid= require('uuid');
+console.log(uuid.v4())
 // instantianting a new express server
 const app = express();
 // selecting network port
@@ -41,8 +44,8 @@ app.post('/api/notes', (req,res)=>{
             throw err;
         } else {
             const notesArr = JSON.parse(data);
+            req.body.id = uuid.v4();
             notesArr.push(req.body);
-            
             fs.writeFile('./db/db.json',
             JSON.stringify(notesArr,null,4),
             (err, data)=>{

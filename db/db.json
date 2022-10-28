@@ -1,7 +1,12 @@
 [
     {
+        "title": "trash",
+        "text": "take out the trash",
+        "id": "88a937cd-bc69-44ff-9983-01c126d3c9ff"
+    },
+    {
         "title": "Test Title",
-        "text": "Test text"
+        "text": "Test Text\n",
+        "id": "d92a27b3-2212-4d54-9ee7-63fd31d46d3e"
     }
-    
 ]
