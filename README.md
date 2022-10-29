@@ -7,7 +7,8 @@ express.js, and uuid npm packages.
 Clone repo, open repo, install dependincies using: npm i, run program from terminal with node index.js
 
 ## Screenshots
-![Generated HTML](./assets/generated-html.PNG)
+![Homepage](./Assets/hompeage.PNG)
+![Notes Page](./Assets/notes_page.PNG)
 
 ## link to deployed webpage
-[Deployed webpage]()
+[Deployed webpage](https://note-take-andrew.herokuapp.com)
