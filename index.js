@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 3000;
 // importing path package from standard library
 const path = require("path");
 const fs = require("fs");
+let note_data = require("./db/db.json")
 
 
 //middle ware to serve static assets
@@ -68,7 +69,22 @@ app.post('/api/notes', (req,res)=>{
 })
 
 //delete notes from /api/notes/:id
-app.delete('./api/notse/:id')
+app.delete('/api/notes/:id', (req,res)=>{
+    console.log(req.params);
+    console.log(note_data);
+    let filteredData = note_data.filter(note=>{
+        return note.id != req.params.id;
+    })
+    console.log(filteredData);
+    fs.writeFile('./db/db.json',
+    JSON.stringify(filteredData,null,4),
+    (err, data)=>{
+        if(err) {
+            throw err;
+        }
+        res.json(filteredData)
+    })
+})
 
 // catch all for all unhandled routes
 app.get("*", (req, res) => {
