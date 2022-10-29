@@ -74,7 +74,7 @@ app.delete('/api/notes/:id', (req,res)=>{
     console.log(req.params);
     console.log(note_data);
     let filteredData = note_data.filter(note=>{
-        return note.id != req.params.id;
+        return note.id !== req.params.id;
     })
     console.log(filteredData);
     fs.writeFile('./db/db.json',
