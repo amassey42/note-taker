@@ -56,6 +56,7 @@ app.post('/api/notes', (req,res)=>{
             //sets a random id to each note created
             req.body.id = uuid.v4();
             notesArr.push(req.body);
+            console.log(notesArr);
             fs.writeFile('./db/db.json',
             JSON.stringify(notesArr,null,4),
             (err, data)=>{
