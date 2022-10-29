@@ -71,21 +71,34 @@ app.post('/api/notes', (req,res)=>{
 
 //delete notes from /api/notes/:id
 app.delete('/api/notes/:id', (req,res)=>{
-    console.log(req.params);
-    console.log(note_data);
-    let filteredData = note_data.filter(note=>{
-        return note.id !== req.params.id;
-    })
-    console.log(filteredData);
-    fs.writeFile('./db/db.json',
-    JSON.stringify(filteredData,null,4),
-    (err, data)=>{
-        if(err) {
+    fs.readFile('./db/db.json', 'utf-8', (err, data)=>{
+        if (err){
             throw err;
+        } else {
+            const notesArr = JSON.parse(data);
+        let index = -1;
+        for(let i =0; i<notesArr.length; i++){
+            if(notesArr[i].id === req.params.id){
+                index = i;
+                break;
+            }
         }
-        res.json(filteredData)
+            if(index !== -1){
+                notesArr.splice(index, 1)
+            }
+            fs.writeFile('./db/db.json',
+            JSON.stringify(notesArr,null,4),
+            (err, data)=>{
+                if(err) {
+                    throw err;
+                }
+                res.send("Note Added")
+            })
+        }
     })
 })
+
+
 
 // catch all for all unhandled routes
 app.get("*", (req, res) => {
